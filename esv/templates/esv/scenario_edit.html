@@ -1,0 +1,12 @@
+{% extends 'esv/base.html' %}
+
+{% block content %}
+    <h2>Nieuw scenario</h2>
+    <form method="POST" >
+        <div>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" >Save</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,134 @@
+
+
+{% extends 'esv/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% load static %}
+
+
+<div class="grid-container">
+  <div class="grid-item">
+
+    </div>
+
+  <div class="grid-item">
+    <p><h3>Basisgegevens </h3></p>
+    <p><i>Om een scenario te kunnen berekenen is het vereist om basisgegevens (verbruik, prijzen) voor minimaal 1 huis aan te maken. Dat doe je door op onderstaande + te klikken.</i> </p>
+    <p><b>Huizen</b><a href="{% url 'house_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuw huis'/></a></p>
+            <table id="roltb">
+                <tr><th>Naam</th><th>gas jaar</th><th>stroom jaar</th><th></th><th></th></tr>
+            {% for house in houses %}
+                <tr>
+                    <td  align='left'> {{ house.naam }}  </td>
+                    <td  align='left'> {{ house.gas_verbruik }} m3 </td>
+                    <td  align='left'> {{ house.stroom_verbruik }} kwh </td>
+                   <td align='left'><a href="{% url 'house_edit' pk=house.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit huis'/> </a> </td>
+                   <td align='left'><a href="{% url 'house_del' pk=house.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder huis'/> </a> </td>
+                 </tr>
+            {% endfor %}
+            </table>
+    <br>
+    <p><b>Overheidsregelingen</b>
+        <br>
+        {% for countryrule in countryrules %}
+        <p><a href="{% url 'country_edit' pk=countryrule.pk %}"> Plafond en Saldering </a></p>
+        {% endfor %}
+
+      <br>
+       <p><h3>Investeringen </h3></p>
+    <p> Om gas en stroom te besparen kan je voor je huis of huizen investeringen doen in isolatie en in duurzame apparaten.</p>
+    <p><b>Zonnepanelen</b><a href="{% url 'solarpannels_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuwe zonnepanelen'/></a> </p>
+
+        <table id="roltb">
+        {% for solarpannel in solarpannels %}
+               <tr>
+                <td  align='left'> {{ solarpannel.naam }}  </td>
+                   <td align='left'><a href="{% url 'solarpannels_edit' pk=solarpannel.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit zonnepanelen'/></a> </td>
+                   <td align='left'><a href="{% url 'solarpannels_del' pk=solarpannel.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder zonnepanelen'/> </a> </td>
+                 </tr>
+        {% endfor %}
+        </table>
+    <br>
+
+         <p><b>Zonneboilers</b><a href="{% url 'solarboiler_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuwe zonneboiler'/></a> </p>
+        <table id="roltb">
+        {% for solarboiler in solarboilers %}
+               <tr>
+                <td  align='left'> {{ solarboiler.naam }}  </td>
+                   <td align='left'><a href="{% url 'solarboiler_edit' pk=solarboiler.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit zonneboiler'/> </a> </td>
+                   <td align='left'><a href="{% url 'solarboiler_del' pk=solarboiler.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder zonneboiler'/> </a> </td>
+                 </tr>
+        {% endfor %}
+        </table>
+
+        <br>
+        <p><b>Warmtepomp</b><a href="{% url 'heatpump_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuwe warmtepomp'/></a>  </p>
+        <table id="roltb">
+        {% for heatpump in heatpumps %}
+               <tr>
+                <td  align='left'> {{ heatpump.naam }}  </td>
+                   <td align='left'><a href="{% url 'heatpump_edit' pk=heatpump.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit warmtepomp'/> </a> </td>
+                   <td align='left'><a href="{% url 'heatpump_del' pk=heatpump.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder warmtepomp'/> </a> </td>
+                 </tr>
+        {% endfor %}
+          </table>
+        <br>
+        <p><b>Thuisbatterijen</b><a href="{% url 'homebattery_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuwe thuisbatterij'/></a>  </p>
+        <table id="roltb">
+        {% for homebattery in homebatteries %}
+               <tr>
+                <td  align='left'> {{ homebattery.naam }}  </td>
+                   <td align='left'><a href="{% url 'homebattery_edit' pk=homebattery.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit thuisbatterij'/> </a> </td>
+                   <td align='left'><a href="{% url 'homebattery_del' pk=homebattery.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder thuisbatterij'/> </a> </td>
+                 </tr>
+        {% endfor %}
+          </table>
+        <br>
+
+         <p><b>Isolatie</b><a href="{% url 'insulation_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuwe isolatie'/></a>  </p>
+        <table id="roltb">
+        {% for insulation in insulations %}
+            <tr>
+                <td  align='left'>{{ insulation.naam }}, {{ insulation.soort }}  </td>
+                   <td align='left'><a href="{% url 'insulation_edit' pk=insulation.pk %}"> <img src="{% static 'icons/pen.png' %}" width="25" height="25" title='Edit isolatie'/></a> </td>
+                   <td align='left'><a href="{% url 'insulation_del' pk=insulation.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder isolatie'/> </a> </td>
+                 </tr>
+
+        {% endfor %}
+         </table>
+
+
+    </div>
+
+  <div class="grid-item">
+        <p><h3>Scenarios </h3></p>
+        <p> Investeringen zorgen voor meer of minder verbruik van energie.</p>
+        <p> Reken het gas en stroomverbruik door op basis van de investeringen en kijk hoe dat je maandbedrag beinvloed. Of bereken een scenario met het prijsplafond en zonder en bekijk het verschil </p>
+
+        <br>
+
+        <p><b>Scenario</b> <a href="{% url 'scenario_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Nieuw scenario'/> </a></p>
+        <table id="roltb">
+            <tr><th>Naam</th><th>gas jaar</th><th>stroom jaar</th><th>€ maand</th><th></th><th></th></tr>
+        {% for scenario in scenarios %}
+            <tr>
+                <td> {{ scenario.naam }}</td>
+                <td>{{ scenario.gasverbruik_na }} m3</td>
+                <td>{{ scenario.stroomverbruik_na }} kwh</td>
+                <td>{{ scenario.maandbedrag }}€</td>
+                <td align='right'><a href="{% url 'scenario_del' pk=scenario.pk %}"> <img src="{% static 'icons/del.png' %}" width="25" height="25" title='Verwijder berekeningen'/> </a></td>
+                <td align='right'><a href="{% url 'scenario_run' pk=scenario.pk %}"> <img src="{% static 'icons/compute.png' %}" width="25" height="25" title='Toon berekeningen'/> </a></td>
+             </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <p><b>Vergelijk Scenario</b> <a href="{% url 'scenariocompare_new' %}"><img src="{% static 'icons/plus.png' %}" width="25" height="25" title='Scenarios vergelijken'/> </a></p>
+    </div>
+
+
+</div>
+
+{% endif %}
+{% endblock %}
+

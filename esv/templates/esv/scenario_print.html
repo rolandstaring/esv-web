@@ -1,0 +1,28 @@
+{% extends 'esv/base.html' %}
+
+{% block content %}
+<div class="grid-container">
+
+    <div class="grid-item">
+        <h2> Kosten </h2>
+        {{ output_scenario | safe }}
+        <br>
+        <h2> Prijzen en investeringen </h2>
+        {{ input_scenario | safe }}
+
+     </div>
+
+
+    <div class="grid-item">
+    <h2>Berekening stroom</h2>
+    {{ stroom_scenario | safe }}
+     </div>
+
+    <div class="grid-item">
+        <h2>Berekening gas</h2>
+        {{ gas_scenario | safe }}
+
+     </div>
+
+
+{% endblock %}

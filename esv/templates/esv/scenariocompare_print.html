@@ -1,0 +1,26 @@
+{% extends 'esv/base.html' %}
+
+{% block content %}
+<div class="grid-container">
+
+    <div class="grid-item">
+        <p><b>Huidige scenario kosten</b></p>
+        {{ kosten_huidig | safe }}
+        <br>
+        <p><b>Toekomst scenario kosten</b></p>
+        {{ kosten_toekomst | safe }}
+        <br>
+     </div>
+
+     <div class="grid-item">
+
+        {{ complement | safe }}
+        <br>
+        <p><b>Terugverdientijd investeringen</b></p>
+        {{ roi | safe }}
+        <br>
+     </div>
+
+
+
+{% endblock %}

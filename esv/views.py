@@ -50,7 +50,6 @@ def add_template_country(request):
                         stroom_plafond = '2900')
     country_rules.save()
 
-
 def add_templates_solarpannels(request):
     solar_small = Solarpannels.objects.create(eigenaar = request.user,
                     naam = '4 panelen 375w',
@@ -77,21 +76,45 @@ def add_templates_solarpannels(request):
     solar_middle.save()
     solar_high.save()
 
+def add_templates_heatpumps(request):
+    heatpump_small = Heatpump.objects.create(eigenaar = request.user,
+                    naam = 'Hybride klein',
+                    prijs = '2500',
+                    cop = '4.9',
+                    watt_cap = '4400',
+                    gbc = '0.8')
+    heatpump_middle = Heatpump.objects.create(eigenaar = request.user,
+                    naam = 'Hybride groot',
+                    prijs = '3500',
+                    cop = '4.9',
+                    watt_cap = '8000',
+                    gbc = '0.9')
+    heatpump_high = Heatpump.objects.create(eigenaar = request.user,
+                    naam = 'All electric',
+                    prijs = '5000',
+                    cop = '4.9',
+                    watt_cap = '12000',
+                    gbc = '1')
+
+    heatpump_small.save()
+    heatpump_middle.save()
+    heatpump_high.save()
+
 def add_templates_solarboilers(request):
     sb_small = Solarboiler.objects.create(eigenaar = request.user,
-                    naam = '2 personen ',
+                    naam = '2 personen zonneboiler',
                     prijs = '3000',
                     watt = '60',
                     watt_cap = '1340',
                     )
     sb_middle = Solarboiler.objects.create(eigenaar = request.user,
-                    naam = '4 personen ',
+                    naam = '4 personen zonneboiler',
                     prijs = '4500',
                     watt = '60',
                     watt_cap = '2340',
                     )
     sb_high = Solarboiler.objects.create( eigenaar = request.user,
-                    naam = '6 personen',
+                    naam = '6 personen zonneboiler',
                     prijs = '6500',
                     watt = '60',
                     watt_cap = '3295',
@@ -100,10 +123,36 @@ def add_templates_solarboilers(request):
     sb_middle.save()
     sb_high.save()
 
+def add_templates_homebattery(request):
+    hb_small = Homebattery.objects.create(eigenaar = request.user,
+                    naam = 'Batterij 3kwh',
+                    prijs = '3500',
+                    watt_cap = '4000',
+                    )
+    hb_middle = Homebattery.objects.create(eigenaar = request.user,
+                    naam = 'Batterij 6kwh ',
+                    prijs = '5000',
+                    watt_cap = '6000',
+                    )
+    hb_high = Homebattery.objects.create( eigenaar = request.user,
+                    naam = 'Batterij 10kwh',
+                    prijs = '10000',
+                    watt_cap = '10000',
+                    )
+    hb_small.save()
+    hb_middle.save()
+    hb_high.save()
+
+
 def add_templates(request):
     add_template_country(request)
     add_templates_solarpannels(request)
     add_templates_solarboilers(request)
+    add_templates_heatpumps(request)
+    add_templates_homebattery(request)
+
+
+
 
 
 def register_request(request):

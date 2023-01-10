@@ -63,6 +63,7 @@ class Solarboiler(Appliance):
 
 class Heatpump(Appliance):
     cop = models.FloatField()
+    watt_cap = models.IntegerField()
     gbc = models.FloatField(validators=[MinValueValidator(0.0),
                                        MaxValueValidator(1.0)])
 

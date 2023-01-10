@@ -91,6 +91,7 @@ class HeatpumpForm(forms.ModelForm):
         model = Heatpump
         fields = ('naam',
                 'prijs',
+                'watt_cap',
                 'cop',
                 'gbc')
         labels = {'cop' : 'Gemiddelde rendement van de warmtepomp. Hoe hoger hoe beter. Meestal rond de 4',
